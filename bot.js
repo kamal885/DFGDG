@@ -50,52 +50,8 @@ return;
 
 
 
- client.on('message', message => {
-    if (message.content.startsWith("رابط")) {
-        message.channel.createInvite({
-        thing: true,
-        maxUses: 1,
-        maxAge: 3600,
-    }).then(invite =>
-      message.author.sendMessage(invite.url)
-    )
-    const embed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-          .setDescription("تم أرسال الرابط برسالة خاصة")
-           .setAuthor(client.user.username, client.user.avatarURL)
-                 .setAuthor(client.user.username, client.user.avatarURL)
-                .setFooter('طلب بواسطة: ' + message.author.tag)
-
-      message.channel.sendEmbed(embed).then(message => {message.delete(10000)})
-              const Embed11 = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        
-    .setDescription("** مدة الرابط : ساعه | عدد استخدامات الرابط : 1 **")
-      message.author.sendEmbed(Embed11)
-    }
-}); 
-
- 
 
 
-client.on("message", message => {
- if (message.content === "-help") {
-	  message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail: ');
-  const embed = new Discord.RichEmbed() 
-      .setColor("#000000")
-      .setDescription(`
-	       اوامر البوت
-❖-bc ⇏ لارسال الي الونلاين بدون ازهر اسمك او اسم السرفر
-❖-1bc ⇏ لارسال الي الكل باسمك واسم السرفر
-❖ لو تب الربط ⇏ رابط
-❖-2bc ⇏ سمك واسم السرفر
-  by❖Darmex      ❖Sky Shop
-
- `)
-   message.author.sendEmbed(embed)
-    
-   }
-   }); 
 
    
 client.on('ready', () => {
@@ -111,65 +67,9 @@ client.user.setStatus("dnd")
 
 
 
-
-client.on("message", message => {
-  if (message.author.bot) return;
-  
-  let command = message.content.split(" ")[0];
-  
-  if (command === "-mute") {
-        if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **").catch(console.error);
-  let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'mute-log');
-  let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
-  if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").catch(console.error);
-  if (message.mentions.users.size < 1) return message.reply('** يجب عليك منشنت شخص اولاً**').catch(console.error);
-  
-  const embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
-    .setTimestamp()
-    .addField('الأستعمال:', 'اسكت/احكي')
-    .addField('تم ميوت:', `${user.username}#${user.discriminator} (${user.id})`)
-    .addField('بواسطة:', `${message.author.username}#${message.author.discriminator}`)
-   
-   if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** لا يوجد لدي برمشن Manage Roles **').catch(console.error);
- 
-  if (message.guild.member(user).roles.has(muteRole.id)) {
-return message.reply("**:white_check_mark: .. تم اعطاء العضو ميوت**").catch(console.error);
-} else {
-    message.guild.member(user).addRole(muteRole).then(() => {
-return message.reply("**:white_check_mark: .. تم اعطاء العضو ميوت كتابي**").catch(console.error);
-});
-  }
-
-};
-
-});
-
-
-client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","QUIET"));
-    });
-
-
-
-client.on('message', message => {
-            if (message.content === 'باك') {
-              message.channel.sendFile("ولكم حيك لله :)");
-            }
-         });
-
-
-client.on('message', message => {
-            if (message.content === 'السلام عليكم') {
-              message.channel.sendFile("وعليكم السلام :)");
-            }
-         });
-
-
 }
 
-const adminprefix = "/";
+const adminprefix = "bc-";
 const devs = ['487727064192122880'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
